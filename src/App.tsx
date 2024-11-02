@@ -188,13 +188,13 @@ export default function () {
     <>
       <div className="container">
         <table cellPadding="14px 18px" cellSpacing={0}>
-          <thead>
+          {/* <thead>
             <tr>
               {Object.keys(mockData["most_wickets"][0]).map((eachAttribute) => (
                 <th align="left">{eachAttribute}</th>
               ))}
             </tr>
-          </thead>
+          </thead> */}
           <tbody>
             {mockData["most_wickets"].map((eachPlayer, i) => (
               <tr
