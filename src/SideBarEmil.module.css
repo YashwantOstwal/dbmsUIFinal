@@ -1,0 +1,56 @@
+button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+.sideBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 30vw;
+  height: 100vh;
+  padding-inline: 15px;
+  overflow: hidden;
+  background-color: #ffffff;
+  border-top-right-radius: 24px;
+  border-bottom-right-radius: 24px;
+  border-right: 1px solid #f4f4f5;
+}
+.sideBarButton {
+  position: fixed;
+  top: 10px;
+  padding: 0px;
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  border-radius: 50%;
+}
+.tabsContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin: auto;
+  border-radius: 99px;
+  margin-top: 60px;
+  border: 2px solid #f4f4f5;
+}
+.tab {
+  line-height: 240%;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  width: 100%;
+  padding: 0px;
+  text-transform: capitalize;
+  position: relative;
+}
+.tabBackground {
+  position: absolute;
+  inset: 2px;
+  background-color: #f4f4f5;
+  z-index: -1;
+  border-radius: 99px;
+}
+.container {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+}
