@@ -1,16 +1,9 @@
-import {
-  FC,
-  SetStateAction,
-  useRef,
-  useState,
-  useEffect,
-  CSSProperties,
-} from "react";
-import { motion, AnimatePresence, useInView } from "framer-motion";
+import { SetStateAction, useState, CSSProperties } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import styles from "./SideBarEmil.module.css";
 import "./App.css";
 
-const queries = {
+const queries: { batting: string[]; bowling: string[] } = {
   batting: [
     "highest batting average",
     "fastest century",
@@ -34,7 +27,7 @@ const queries = {
   ],
 };
 
-function DropDown({ tab }: { tab: string }) {
+function DropDown({ tab }: { tab: "batting" | "bowling" }) {
   const [open, setOpen] = useState(false);
   const [searchedQuery, setSearchedQuery] = useState("");
   const handleOpen = () => {
@@ -83,12 +76,12 @@ function DropDown({ tab }: { tab: string }) {
         {open && (
           <div className="options">
             {queries[tab]
-              .filter((query) =>
+              .filter((query: string) =>
                 searchedQuery == ""
                   ? true
                   : query.slice(0, searchedQuery.length) == searchedQuery
               )
-              .map((filteredQuery) => (
+              .map((filteredQuery: string) => (
                 <button
                   // value={filteredQuery}
                   key={filteredQuery}
@@ -259,7 +252,7 @@ export function Info() {
 }
 export function SideBarEmil({}: {}) {
   const [open, setOpen] = useState(false);
-  const [tab, setTab] = useState("batting"); //fundamentals
+  const [tab, setTab] = useState<"batting" | "bowling">("batting"); //fundamentals
   return (
     <>
       <AnimatePresence>
@@ -272,9 +265,9 @@ export function SideBarEmil({}: {}) {
             className={styles.sideBar}
           >
             <div className={styles.tabsContainer}>
-              {Object.keys({ batting: [], bowling: [] }).map((tabName) => (
-                <Tab tab={tab} setTab={setTab}>
-                  {tabName}
+              {Object.keys({ batting: [], bowling: [] }).map((tabName: any) => (
+                <Tab tab={tab} setTab={setTab} tabName={tabName}>
+                  {/* {tabName} */}
                 </Tab>
               ))}
             </div>
@@ -324,20 +317,20 @@ export function SideBarEmil({}: {}) {
 function Tab({
   tab,
   setTab,
-  children,
+  tabName,
 }: {
-  tab: string;
-  setTab: React.Dispatch<SetStateAction<string>>;
-  children: string;
+  tab: "batting" | "bowling";
+  setTab: React.Dispatch<SetStateAction<"batting" | "bowling">>;
+  tabName: "batting" | "bowling";
 }) {
   return (
     <button
       className={styles.tab}
-      style={{ fontWeight: tab == children.toLocaleLowerCase() ? 450 : 400 }}
-      onClick={() => setTab(children.toLowerCase())}
+      style={{ fontWeight: tab == tabName.toLocaleLowerCase() ? 450 : 400 }}
+      onClick={() => setTab(tabName)}
     >
-      {children}
-      {tab == children.toLocaleLowerCase() && (
+      {tabName}
+      {tab == tabName.toLocaleLowerCase() && (
         <motion.div layoutId="background" className={styles.tabBackground} />
       )}
     </button>
